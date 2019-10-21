@@ -1,0 +1,120 @@
+.bottom
+{
+    background-color: indianred;
+    width:750px;
+    height: 700px;
+    align-content: center;
+    font-family: Lato;
+    font-weight: 300;
+   
+}
+.nav-bar
+{
+    text-align: center;
+}
+.player-zone
+{
+    background-color: aliceblue;
+    width:700px;
+    height: 550px;
+    padding: 10px;
+    margin-left:2%;
+    border-radius: 20px;
+}
+.player-zone-1
+{
+    float: left;
+    padding: 40px;
+    width:250px;
+    background-color: #DBD7D7;
+    height: 400px;
+
+    
+    
+}
+.player-zone-2
+{
+
+    float:right;
+    padding: 40px;
+    width:250px;
+    background-color: #dbd7d7;
+    height: 400px;
+    
+}
+.player1-info,.player2-info
+{
+    border-radius: 6px;
+    height: 30px;
+    background-color: transparent;
+    
+}
+.add1,.add2
+{
+    font-size: 35px;
+    background: none;
+    border: none;
+    color: indianred;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1.1;
+    margin-left: 10px;
+}
+.add1,.add2:active{transform: translateY(2px);}
+.add1,.add2:focus{outline: none;}
+
+
+.btn1,.btn2
+{
+    font-size: 35px;
+    background: none;
+    border: none;
+    color: indianred;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1.1;
+    margin-left: 10px;
+}
+.btn1:active
+{transform: translateY(2px);}
+.btn2:active
+{transform: translateY(2px);}
+
+.btn1:focus
+{outline: none;}
+.btn2:focus
+{outline: none;}
+
+p
+{
+    font-family: Lato;
+    font-weight: 300;
+}
+
+#p1,#p2
+{
+    font-size: 50px;
+    color: crimson;
+}
+.dice-value1,.dice-value2
+{
+    font-size: 50px;
+    color: crimson;
+}
+li
+{
+    list-style: none;
+    font-size: 25px;
+}
+.reset-button
+{
+    margin-left: 45%;
+    color: indianred;
+    border-radius: 4px;
+}
+.winner
+{
+    margin-left:45%;
+}
