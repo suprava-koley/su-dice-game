@@ -1,55 +1,8 @@
-//var name = document.querySelector(".player1-info");
 
-/*  var clickBtn = document.querySelector(".add");
-
-clickBtn.addEventListener("click",function(){
-
-    var nameTag = document.querySelector(".player1");
-    var name = document.querySelector(".player1-info");
-    if(nameTag.childElementCount===1)
-    {
-        console.log(nameTag.childElementCount)
-        alert("only once")
-        name.value="";
-    }
-    else
-    {
-       
-        var Pname = document.createElement("p");
-        Pname.appendChild(document.createTextNode(name.value));
-        nameTag.appendChild(Pname);
-        name.value="";
-
-    }
-   
-    console.log(name.value);
-    
-
-})
-
-function sleep(ms) {                                                        //rolling dice
-    return new Promise(resolve => setTimeout(resolve, ms));       
-  }
-*/
-
-
-/*function sleep(ms) {                                                        //rolling dice
-    return new Promise(resolve => setTimeout(resolve, ms));       
-  }
-  */
-
-
-  /* addScore: function(turn, score) {
-            turn ? gameVar.player1.push(score) : gameVar.player1.push(score) ;
-            console.log(turn);
-        }, */
-
-
- 
-/*-------------------------------------------------------------------------------*/
 
 var gameVar = {
     round:0,
+    
     player1:[],
     player2:[]
 }
@@ -63,6 +16,7 @@ var gameFunction = (function() {
         turn ? gameVar.player1.push(score) : gameVar.player2.push(score)  ;
        
         if (turn == 0) gameVar.round = gameVar.round + 1;
+      
         
     }
     function declareWinner()
@@ -74,26 +28,44 @@ var gameFunction = (function() {
         gameVar.player2.forEach(function(x){
             result2=result2+x;
         });
-        var w1=document.querySelector('.winner');
+       
         if(result1>result2)
         {
-           // alert("player one is winner")
+           
           
-            var p1=document.createElement('p');
-            p1.appendChild(document.createTextNode(` Congratulation ${name1.value} is the winner!!`));
-            w1.appendChild(p1);
-        }
+          
+             if(name1.value.length==0)
+             {
+                document.querySelector('.winner').innerHTML="Congratulation player-1 is the winner!!" ; 
+            }
+            
+             else
+             {
+                document.querySelector('.winner').innerHTML=(`Congratulation ${name1.value} is the winner!!`); 
+             }
+            
+           
+        }  
         else
         {
-            //alert("player two is winner")
-            //var w2=document.querySelector('.winner');
-            var p2=document.createElement('p');
-            p2.appendChild(document.createTextNode(`Congratulations ${name2.value} is the winner!!`));
-            w1.appendChild(p2);
+           
+            
+            if(name2.value.length==0)
+            {
+               document.querySelector('.winner').innerHTML="Congratulation player-2 is the winner!!" ; 
+           }
+           
+            else
+            {
+               document.querySelector('.winner').innerHTML=(`Congratulation ${name2.value} is the winner!!`); 
+            }
+           
         }
     }
     function addRound(turn,score)
     {
+       
+
         var ul1=document.querySelector(".scoring-board1");
         var ul2=document.querySelector(".scoring-board2");
 
@@ -105,20 +77,17 @@ var gameFunction = (function() {
     var nameTag1 = document.querySelector(".player1");
     var nameTag2 = document.querySelector(".player2");
 
-    var name1 = document.querySelector(".player1-info");
-    var name2 = document.querySelector(".player2-info");
+     var name1 = document.querySelector(".player1-info");
+     var name2 = document.querySelector(".player2-info");
 
     return {
         nameInfo: function(click) {
-           /*  var nameTag1 = document.querySelector(".player1");
-            var nameTag2 = document.querySelector(".player2"); */
-
-          /*   var name1 = document.querySelector(".player1-info");
-            var name2 = document.querySelector(".player2-info"); */
-
+         
+           
+            
             var nameTag = click.className == 'add1' ? nameTag1 : nameTag2;
             var name = click.className == 'add1' ? name1 : name2;
-
+            
             var Pname = document.createElement("p");
             Pname.appendChild(document.createTextNode(name.value));
             nameTag.appendChild(Pname);
@@ -129,39 +98,46 @@ var gameFunction = (function() {
 
         
         dice: function(dice) {
-            var randNum = Math.floor(Math.random() * 6 + 1);
+                if(gameVar.round==3)
+                {
+                    dice.preventDefault();
+                }
+           
+                var randNum = Math.floor(Math.random() * 6 + 1);
 
 
-
-            dice.className == 'btn1' ? diceFunc1() : diceFunc2();
-
-            function diceFunc1() {
-                document.querySelector('.dice-value1');
-                document.querySelector('.dice-value1').innerHTML = randNum;
+              
+                dice.className == 'btn1' ? diceFunc1() : diceFunc2();
                
-                addRound(1,randNum);
-                addScore(1,randNum);
+                function diceFunc1() {
+                    document.querySelector('.dice-value1');
+                    document.querySelector('.dice-value1').innerHTML = randNum;
+                
+                    addRound(1,randNum);
+                    addScore(1,randNum);
+                   
 
-            }
-
-
-
-            function diceFunc2() {
-                document.querySelector('.dice-value2');
-                document.querySelector('.dice-value2').innerHTML = randNum;
-               
-                addScore(0,randNum);
-                addRound(2,randNum);
-                if (gameVar.round === 3) {
-                    declareWinner();
                 }
 
+
+
+                function diceFunc2() {
+                    document.querySelector('.dice-value2');
+                    document.querySelector('.dice-value2').innerHTML = randNum;
                 
-            }
+                    addScore(0,randNum);
+                    addRound(2,randNum);
+                    if (gameVar.round === 3) {
+                        declareWinner();
+                    }
+                   
+                }
+            
 
         }
 
     }
+
 })();
 
 
@@ -172,10 +148,11 @@ var mainfunc = (function(gameFunc) {
 
     var diceButton1 = document.querySelector('.btn1');
     var diceButton2 = document.querySelector('.btn2');
- 
+
+   
     var count = 1;
 
-    var onClick = (function(gameFunc) {
+    var onClick_btn = (function(gameFunc) {
         return {
             c1: function() {
                 gameFunc.nameInfo(clickBtn1);
@@ -187,33 +164,37 @@ var mainfunc = (function(gameFunc) {
 
     })(gameFunc);
 
-    clickBtn1.addEventListener("click", onClick.c1);
-    clickBtn2.addEventListener("click", onClick.c2);
+    clickBtn1.addEventListener("click" ,onClick_btn.c1); 
+    clickBtn2.addEventListener("click",onClick_btn.c2);
 
      diceButton1.addEventListener('click', diceRoll1);
     diceButton2.addEventListener('click', diceRoll2);
  
     
     
-        function diceRoll1() {
-            if (count == 1) {
-                gameFunc.dice(diceButton1);
+             function diceRoll1() {
+             if (count == 1) {
+             gameFunc.dice(diceButton1);
 
-            } else {
-                alert('not your turn')
-            }
-            count = 2;
-        }
+             } else {
+                 alert('not your turn')
+             }
+             count = 2;
+         }
 
-        function diceRoll2() {
-            if (count == 2) {
-                gameFunc.dice(diceButton2);
-            } else {
-                alert('not your turn');
-            }
-            count = 1;
-        }
+         function diceRoll2() {
+            
+             
+                 if (count == 2)
+                  {
+                     gameFunc.dice(diceButton2);
+                  } 
+                  else 
+                  {
+                     alert('not your turn');
+                  }
+                    count = 1;
+             }
 
-     
-    
+       
 })(gameFunction);
