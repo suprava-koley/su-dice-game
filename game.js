@@ -8,10 +8,7 @@ var gameVar = {
 }
 var gameFunction = (function() {
 
-   
-
-   
-    function addScore(turn, score) {
+   function addScore(turn, score) {
         
         turn ? gameVar.player1.push(score) : gameVar.player2.push(score)  ;
        
